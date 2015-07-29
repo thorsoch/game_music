@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}リクエスト{% endblock %}
+
+{% block body_block %}
+
+    <p>追加してほしいゲーム音楽（YoutubeURL付きだと助かります）、このサイトに投入してもらいたい機能などなど、気軽にリクエストしてください。</p>
+    <p>リンク切れやバグの報告もこちらからお願いします。</p>
+    <p>必ずしもご要望にお応えできるとは限りませんので、ご了承ください。</p>
+
+    <div id="addCommentContainer">
+        <p>リクエスト</p>
+        {% if user.is_authenticated %}
+            <form id="addCommentForm" method="post" action="{% url 'requesto' %}">
+                {% csrf_token %}
+                <div>
+                    <textarea name="text" id="body" cols="20" rows="3"></textarea>
+
+                    <input type="submit" id="submit" value="送信" />
+                </div>
+            </form>
+        {% else %}
+            ログインしてください。
+        {% endif %}
+    </div>
+    {% if request %}
+            <div class="subtitle"><h3>リクエストを受信しました！</h3></div>
+    {% endif %}
+
+{% endblock %}

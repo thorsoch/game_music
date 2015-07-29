@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}パスハードを忘れました{% endblock %}
+
+{% block body_block %}
+
+<!--Input email and press send. Make it so it only works once per account.-->
+こちらにE-mailアドレスを入力してください。
+パスワードのメールは一度しか送れないので、大切に保管してください。
+<form method="post" action="{% url 'forgetpass' %}">
+    {% csrf_token %}
+    <div>
+        Eメール<input name="text" id="body" cols="20" rows="1"></input><br />
+        パスワード<input name="newpass" id="body" cols="20" rows="1"></input><br />
+        <input type="submit" id="submit" value="送信" />
+    </div>
+</form>
+
+{% endblock %}

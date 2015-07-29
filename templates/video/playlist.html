@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}プレイリスト{% endblock %}
+
+{% block body_block %}
+<script type="text/javascript" src="{% static 'js/playlist.js' %}"></script>
+<script>
+    loadvidid({{ vid_list|safe }}, {{ title_list|safe }});
+</script>
+
+
+<div class="container">
+
+<div class="col-sm-9 col-md-7">
+
+    <h1 class='videotitle' id = "playlist_now_name">あなたのプレイリスト</h1>
+
+    <div id="playlist"></div>
+
+    <button class='btn-success active' onclick="skip();">スキップ</button>
+</div>
+
+<div class="col-sm-2 col-sm-offset-1">
+    <p>次は・・・</p>
+    <div class="thumbnail"><img id="nextvid_img" src="{{ nextvid.thumb }}"></div>
+    <div class="vidname"><p id="nextvid_name">{{ nextvid.name }}</p></div>
+</div>
+
+</div>
+{% endblock %}

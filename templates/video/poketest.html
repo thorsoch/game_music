@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}素早さ診断{% endblock %}
+
+{% block body_block %}
+<script type="text/javascript" src="{% static 'js/poketest.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'css/poketest.css' %}"/>
+
+<!--<body text = "#000000" bgcolor = "#84BE6A">-->
+
+<div id = "prioritize" class="animated fadeIn">
+    <h2 id = "titleP">素早さテスト ver1.02</h2>
+    <p id="explainP"> 1から5の半角数字で素早いポケモン順にランク付けてください。<br>具体的には素早さの種族値順です。<br>色々バグっている可能性があるのでご注意を。<br>伝説を含む最終進化系ポケモンが全て出ます。<br>（ポリ２などの使い道がある進化前も含む）</p>
+
+    <select id = "moder">
+      <option value = "1">順序入力モード</option>
+      <option value = "2">種族値入力モード</option>
+    </select>
+    <input type="checkbox" id="sound" name="sound">サウンド<br>
+
+    <form action="demo_form.asp">
+    <div class="stay"><span id = "pok1" class = "namess">pok1:</span> <input class="inputs" type="text" id = "a" value="" maxlength="3"></div>
+    <div class="stay"><span id = "pok2" class = "namess">pok2:</span> <input class="inputs" type="text" id = "b" value="" maxlength="3"></div>
+    <div class="stay"><span id = "pok3" class = "namess">pok3:</span> <input class="inputs" type="text" id = "c" value="" maxlength="3"></div>
+    <div class="stay"><span id = "pok4" class = "namess">pok4:</span> <input class="inputs" type="text" id = "d" value="" maxlength="3"></div>
+    <div class="stay"><span id = "pok5" class = "namess">pok5:</span> <input class="inputs" type="text" id = "e" value="" maxlength="3"></div>
+    </form>
+
+    <button class="buttonP" onclick = "checkSols()">完了でござる</button>
+    <button class="buttonP" onclick = "reset()">リセットするのじゃ</button>
+    <button class="buttonP" onclick = "answer()">答えを表示</button>
+</div>
+
+<img id ="img" src="{% static "images/correct.png" %}" height ="250" width ="500" style="display: none">
+
+{% endblock %}
