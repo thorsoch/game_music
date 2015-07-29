@@ -17,6 +17,6 @@ from django.conf.urls import include, url
 from django.contrib import admin
 
 urlpatterns = [
-    url(r'^adminthisis79%44ok/', include(admin.site.urls)),
+    url(r'^adminthisis7944ok/', include(admin.site.urls)),
     url(r'^video/', include('video.urls')),
 ]
