@@ -8,7 +8,11 @@
 
 {% if tags %}
     {% for tag in tags %}
-        <a href="{% url 'tagsearch' tag %}"><p>{{ tag }}</p></a>
+        <form action="/video/search/" method="post">
+            {% csrf_token %}
+            <a href="javascript:;" onclick="parentNode.submit();">{{ tag.name }}</a>
+            <input type="hidden" name="tagid" value={{ tag.video_id }} />
+        </form>
     {% endfor %}
 {% else %}
     <p>There are no tags</p>

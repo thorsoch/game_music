@@ -59,9 +59,12 @@ def watchVid(request, video_id):
 def search(request, tag=None):
 
     if tag:
-        t = Tag.objects.filter(name=tag).values_list('video_id', flat=True)
+        r = request.POST
+        t = Tag.objects.filter(video_id=r['tagid'])[0]
+        tname = t.name
+        t = Tag.objects.filter(name = tname).values_list('video_id', flat=True)
         searchResult = Video.objects.filter(video_id__in=t)
-        context_dict = {'query': tag}
+        context_dict = {'query': tname}
     else:
         query = request.GET['query']
         context_dict = {'query': query}
@@ -263,8 +266,14 @@ def random(request):
     return render(request, 'video/watchVid.html', context_dict)
 
 def tags(request):
-    t = Tag.objects.order_by('name').values_list('name', flat=True)
-    context_dict = {'tags': set(t)}
+    t = Tag.objects.order_by('name')
+    dist_tags = []
+    name_list = []
+    for tag in t:
+        if tag.name not in name_list:
+            dist_tags += [tag]
+            name_list += [tag.name]
+    context_dict = {'tags': dist_tags}
     return render(request, 'video/tags.html', context_dict)
 
 def requesto(request):
