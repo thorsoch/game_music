@@ -6,12 +6,11 @@
 
 {% block body_block %}
 
-Whyhwywywywywywywywywyw
 {% if tags %}
-peojgipojejopihjgipahopejipa
     {% for tag in tags %}
         <form action="/video/search/" method="post">
             {% csrf_token %}
+            why
             <a href="javascript:;" onclick="parentNode.submit();">{{ tag.name }}</a>
             <input type="hidden" name="tagid" value={{ tag.video_id }} />
         </form>
