@@ -10,8 +10,8 @@
     {% for tag in tags %}
         <form action="/video/search/" method="post">
             {% csrf_token %}
-            why {{ tag }}
-            <a href="javascript:;" onclick="parentNode.submit();">{{ tag.name }}</a>
+            why
+            <a href="javascript:;" onclick="parentNode.submit();">{{ tag }}</a>
             <input type="hidden" name="tagid" value={{ tag.video_id }} />
         </form>
     {% endfor %}
