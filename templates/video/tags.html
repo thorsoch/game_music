@@ -11,6 +11,8 @@
         <form action="/video/search/" method="post">
             {% csrf_token %}
             why
+            {{ tag.video_id }}
+            {{ tag.name }}
             <a href="javascript:;" onclick="parentNode.submit();">{{ tag }}</a>
             <input type="hidden" name="tagid" value={{ tag.video_id }} />
         </form>
