@@ -56,18 +56,15 @@ def watchVid(request, video_id):
     # Go render the response and return it to the client.
     return render(request, 'video/watchVid.html', context_dict)
 
-def search(request, tag=None):
+def search(request):
 
-    if tag:
+    if request.method == 'POST':
         r = request.POST
-        # t = Tag.objects.filter(video_id=r['tagid'])[0]
-        # tname = t.name
-        # t = Tag.objects.filter(name = tname).values_list('video_id', flat=True)
-        # searchResult = Video.objects.filter(video_id__in=t)
-        # context_dict = {'query': tname}
-        t = Tag.objects.filter(name=r['tagid']).values_list('video_id', flat=True)
-        context_dict = {'query': r['tagid']}
+        t = Tag.objects.filter(video_id=r['tagid'])[0]
+        tname = t.name
+        t = Tag.objects.filter(name = tname).values_list('video_id', flat=True)
         searchResult = Video.objects.filter(video_id__in=t)
+        context_dict = {'query': tname}
     else:
         query = request.GET['query']
         context_dict = {'query': query}
